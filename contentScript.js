@@ -60,11 +60,13 @@ document.addEventListener("pointerup", function(event){
 document.addEventListener("pointerdown", function(event){
   if (event.metaKey)  {
     event.preventDefault();
-    var rect = event.target.getBoundingClientRect();
+    var imageUrl = gitlab.GitlabParseImageUrl(getText(event.target.firstChild,"\r\n"));
+    console.log('first child is:',getText(event.target.firstChild,"\r\n"));
+    if(!imageUrl){
+      return;
+    }
     var frame = document.createElement("div");
     frame.style.position = "absolute";
-    // frame.style.top = (rect.top + window.scrollY) + "px";
-    // frame.style.left = (rect.left + window.scrollX) + "px";
     var w = 480;
     var h = 320;
     var left = (window.innerWidth/2)-(w/2);
@@ -73,12 +75,12 @@ document.addEventListener("pointerdown", function(event){
     frame.style.left = left+'px';
     frame.style.width = w+'px';
     frame.style.height = h+'px';
-    // frame.style.border = "solid 2px gold";
-    // frame.style.borderRadius = "5px";
+    frame.style.border = "solid 2px gold";
+    frame.style.borderRadius = "5px";
     frame.style.zIndex = "99999";
     frame.style.pointerEvents = "none";
     var image = document.createElement("img");
-    image.src = "http://www.lejuhub.com/mini/product/raw/master/Pando%E5%88%87%E5%9B%BE%E5%8C%85/3_%E6%95%88%E6%9E%9C%E5%9B%BE/01%E9%A6%96%E9%A1%B5-1.jpg";
+    image.src = imageUrl;
     image.style.width = w+'px';
     image.style.height = 'auto';
     frame.appendChild(image);

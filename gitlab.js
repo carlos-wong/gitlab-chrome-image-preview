@@ -49,6 +49,9 @@ function GitlabCommentissue(project_id,iid,comment,callback){
 }
 
 function GitlabParseImageUrl(originStr){
+  if(originStr.match(/\/uploads\/[0-9a-zA-z]/)){
+    originStr = "http://www.lejuhub.com/product-commitee/mini"+originStr;
+  }
   var splited_str = originStr.split(' ');
   var mutli_splited_str = lodash.flatten(lodash.map(splited_str,(str)=>{
     return str.split(/[)]/);
@@ -59,9 +62,10 @@ function GitlabParseImageUrl(originStr){
   mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
     return "http://"+str;
   }));
-  return lodash.filter(mutli_splited_str,(str)=>{
+  var ret =  lodash.filter(mutli_splited_str,(str)=>{
     return str.match(".*http://www.lejuhub.com/.*");
   });
+  return ret[0];
 }
 
 let api={};
