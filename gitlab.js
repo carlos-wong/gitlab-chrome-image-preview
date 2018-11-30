@@ -54,7 +54,7 @@ function GitlabParseImageUrl(originStr){
   }
   var splited_str = originStr.split(' ');
   var mutli_splited_str = lodash.flatten(lodash.map(splited_str,(str)=>{
-    return str.split(/[)]/);
+    return str.split(/[)"]/);
   }));
   mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
     return str.split("http://");
@@ -68,11 +68,16 @@ function GitlabParseImageUrl(originStr){
   return ret[0];
 }
 
+function GitlabConverBlobPathToRaw(originstr){
+  return originstr.replace(/\/blob\//,"/raw/");
+}
+
 let api={};
 
 api.QueryProjectMr = QueryProjectMr;
 api.GitlabCommentMr= GitlabCommentMr;
 api.GitlabCommentissue = GitlabCommentissue;
 api.GitlabParseImageUrl = GitlabParseImageUrl;
+api.GitlabConverBlobPathToRaw = GitlabConverBlobPathToRaw;
 
 module.exports = api;

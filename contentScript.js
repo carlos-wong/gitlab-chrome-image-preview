@@ -60,30 +60,34 @@ document.addEventListener("pointerup", function(event){
 document.addEventListener("pointerdown", function(event){
   if (event.metaKey)  {
     event.preventDefault();
-    var imageUrl = gitlab.GitlabParseImageUrl(getText(event.target.firstChild,"\r\n"));
-    console.log('first child is:',getText(event.target.firstChild,"\r\n"));
+    var imageUrl = gitlab.GitlabConverBlobPathToRaw(gitlab.GitlabParseImageUrl(getText(event.target.firstChild,"\r\n")));
+    console.log('first child is:',imageUrl);
     if(!imageUrl){
       return;
     }
     var frame = document.createElement("div");
     frame.style.position = "absolute";
-    var w = 480;
-    var h = 320;
+    var w = 720;
+    var h = 480;
     var left = (window.innerWidth/2)-(w/2);
     var top = (screen.height/2)-(h/2);
     frame.style.top = (top + window.scrollY)+'px';
     frame.style.left = left+'px';
     frame.style.width = w+'px';
     frame.style.height = h+'px';
-    frame.style.border = "solid 2px gold";
-    frame.style.borderRadius = "5px";
     frame.style.zIndex = "99999";
     frame.style.pointerEvents = "none";
+    var title = document.createElement("a");
+    title.text = imageUrl;
+    title.style.backgroundColor = "white";
+    frame.appendChild(title);
     var image = document.createElement("img");
     image.src = imageUrl;
     image.style.width = w+'px';
     image.style.height = 'auto';
     frame.appendChild(image);
+    // frame.style.backgroundColor = "white";
+
     document.body.appendChild(frame);
     if(!showedIframe){
       showedIframe = $(frame).fadeIn(300, "swing");
