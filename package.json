@@ -1,0 +1,29 @@
+{
+  "name": "chrome-extension-gitlab-merge-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "contentScript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode=development --watch",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlos-wong/gitlab-chrome-mergerequest-checker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlos-wong/gitlab-chrome-mergerequest-checker/issues"
+  },
+  "homepage": "https://github.com/carlos-wong/gitlab-chrome-mergerequest-checker#readme",
+  "devDependencies": {
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lodash": "^4.17.11"
+  }
+}

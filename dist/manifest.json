@@ -1,0 +1,16 @@
+{
+  "name": "Gitlab Merge Checker",
+  "version": "0.1",
+  "manifest_version": 2,
+  "permissions": ["tabs", "<all_urls>"],
+  "background": { "scripts": ["hot-reload.js"] },
+  "content_scripts": [
+    {
+      "matches": ["http://www.lejuhub.com/*/*/merge_requests/*"],
+      "run_at": "document_end",
+      "js": ["main.js"],
+      "all_frames": true,
+      "run_at": "document_end"
+    }
+  ]
+}
