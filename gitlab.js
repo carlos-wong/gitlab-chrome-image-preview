@@ -1,4 +1,5 @@
 var axios = require('axios');
+var lodash = require('lodash');
 var config = require('./config');
 var gitlab_axios_instance = axios.create({
   baseURL: config.api_url,
@@ -47,10 +48,27 @@ function GitlabCommentissue(project_id,iid,comment,callback){
     });
 }
 
+function GitlabParseImageUrl(originStr){
+  var splited_str = originStr.split(' ');
+  var mutli_splited_str = lodash.flatten(lodash.map(splited_str,(str)=>{
+    return str.split(/[)]/);
+  }));
+  mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
+    return str.split("http://");
+  }));
+  mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
+    return "http://"+str;
+  }));
+  return lodash.filter(mutli_splited_str,(str)=>{
+    return str.match(".*http://www.lejuhub.com/.*");
+  });
+}
+
 let api={};
 
 api.QueryProjectMr = QueryProjectMr;
 api.GitlabCommentMr= GitlabCommentMr;
 api.GitlabCommentissue = GitlabCommentissue;
+api.GitlabParseImageUrl = GitlabParseImageUrl;
 
 module.exports = api;
