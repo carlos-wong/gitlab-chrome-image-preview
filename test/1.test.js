@@ -1,3 +1,4 @@
+import "babel-polyfill";
 var gitlab = require("../gitlab");
 
 test('url parser ', async () => {
