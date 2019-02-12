@@ -49,7 +49,7 @@ function GitlabCommentissue(project_id,iid,comment,callback){
 }
 
 function GitlabParseImageUrl(originStr){
-  if(originStr.match(/\/uploads\/[0-9a-zA-z]/)){
+  if(originStr.match(/^\/uploads\/[0-9a-zA-z]/)){
     originStr = "http://www.lejuhub.com/product-commitee/mini"+originStr;
   }
   var splited_str = originStr.split(' ');
