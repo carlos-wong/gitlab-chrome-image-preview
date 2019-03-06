@@ -3,3 +3,4 @@ node_modules
 ./dist/main.js
 .tern-port
 dist/main.js
+package-lock.json

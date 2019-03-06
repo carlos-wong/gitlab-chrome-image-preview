@@ -5,7 +5,7 @@ var gitlab = require('./gitlab');
 
 var showedIframe = null;
 
-console.log('Gitlab Merge Request image preview extension loaded');
+
 
 var gitlab_axios_instance = axios.create({
   baseURL: config.api_url,
@@ -70,7 +70,7 @@ document.addEventListener("pointerdown", function(event){
     var w = 720;
     var h = 480;
     var left = (window.innerWidth/2)-(w/2);
-    var top = (screen.height/2)-(h/2);
+    var top = 20;
     frame.style.top = (top + window.scrollY)+'px';
     frame.style.left = left+'px';
     frame.style.width = w+'px';
@@ -96,5 +96,5 @@ document.addEventListener("pointerdown", function(event){
 }, false);
 
 function myMain () {
-
+    console.log('Gitlab Merge Request image preview extension loaded');
 }
