@@ -58,7 +58,7 @@ document.addEventListener("pointerup", function(event){
 });
 
 document.addEventListener("pointerdown", function(event){
-  if (event.metaKey)  {
+  if (event.metaKey || event.altKey)  {
     event.preventDefault();
     var imageUrl = gitlab.GitlabConverBlobPathToRaw(gitlab.GitlabParseImageUrl(getText(event.target.firstChild,"\r\n")));
     console.log('first child is:',imageUrl);
