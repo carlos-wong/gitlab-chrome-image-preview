@@ -6,7 +6,7 @@
   "background": { "scripts": ["hot-reload.js"] },
   "content_scripts": [
     {
-      "matches": ["http://www.lejuhub.com/*/*/merge_requests/*"],
+      "matches": ["https://www.lejuhub.com/*/*/merge_requests/*"],
       "run_at": "document_end",
       "js": ["jquery-2.2.0.min.js","main.js"],
       "all_frames": true,
@@ -15,6 +15,6 @@
   ],
   "web_accessible_resources": [
         "frame.html",
-        "http://www.lejuhub.com/*"
+        "https://www.lejuhub.com/*"
     ]
 }
