@@ -49,30 +49,36 @@ function GitlabCommentissue(project_id,iid,comment,callback){
 }
 
 function GitlabParseImageUrl(originStr){
-  if(originStr.match(/^\/uploads\/[0-9a-zA-z]/)){
-    originStr = "https://www.lejuhub.com/product-commitee/mini"+originStr;
-  }
-  var splited_str = originStr.split(' ');
-  var mutli_splited_str = lodash.flatten(lodash.map(splited_str,(str)=>{
-    return str.split(/[)"]/);
-  }));
-  mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
-    return str.split("https://");
-  }));
-  mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
-    return str.split("http://");
-  }));
-  mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
-    return "https://"+str;
-  }));
-  var ret =  lodash.filter(mutli_splited_str,(str)=>{
-    return str.match(".*https://www.lejuhub.com/.*");
-  });
-  return ret[0];
+    if(originStr.match(/^\/uploads\/[0-9a-zA-z]/)){
+        originStr = "https://www.lejuhub.com/product-commitee/mini"+originStr;
+    }
+    var splited_str = originStr.split(' ');
+    var mutli_splited_str = lodash.flatten(lodash.map(splited_str,(str)=>{
+        return str.split(/[()"]/);
+    }));
+    mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
+        return str.split("https://");
+    }));
+    mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
+        return str.split("http://");
+    }));
+    mutli_splited_str = lodash.flatten(lodash.map(mutli_splited_str,(str)=>{
+        if(str.match(/^\/uploads\/[0-9a-zA-z]/)){
+            return "https://www.lejuhub.com/product-commitee/mini"+str;
+        }
+        else if(str.match(/^www\.lejuhub\.com/)){
+            return "https://"+str;
+        }
+        return str;
+    }));
+    var ret =  lodash.filter(mutli_splited_str,(str)=>{
+        return str.match(".*https://www.lejuhub.com/.*");
+    });
+    return ret[0];
 }
 
 function GitlabConverBlobPathToRaw(originstr){
-  return originstr.replace(/\/blob\//,"/raw/");
+  return originstr && originstr.replace(/\/blob\//,"/raw/");
 }
 
 let api={};

@@ -25,5 +25,5 @@ test('url parser ', async () => {
 
   expect(gitlab.GitlabParseImageUrl(gitlab.GitlabConverBlobPathToRaw("http://www.lejuhub.com/Product/aelos_mini_feature/uploads/9f106721f297cf9014e45037cb900c09/image.png"))).toEqual("https://www.lejuhub.com/Product/aelos_mini_feature/uploads/9f106721f297cf9014e45037cb900c09/image.png");
 
-
+    expect(gitlab.GitlabParseImageUrl(gitlab.GitlabParseImageUrl("* ![image](/uploads/d86d3602bbab9244fe45c874b0501028/image.png)"))).toEqual("https://www.lejuhub.com/product-commitee/mini/uploads/d86d3602bbab9244fe45c874b0501028/image.png");
 });
